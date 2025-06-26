@@ -32,7 +32,10 @@ export default function Home() {
             <CustomButton text="Search" clickHandler={searchHandler} />
             <ul>
                 {data.map((book) => (
-                    <li onClick={() => navigate(`/book/${book.id}`)}>
+                    <li
+                        onClick={() => navigate(`/book/${book.id}`)}
+                        key={book.id}
+                    >
                         {book.volumeInfo.title}
                     </li>
                 ))}
