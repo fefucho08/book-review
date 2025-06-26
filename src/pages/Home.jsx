@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
 import LoginInput from "../components/Login/LoginInput";
-import CustomButton from "../components/CustomButton";
 import GetBooks from "../services/getBooks";
-import { useNavigate } from "react-router-dom";
+import BookCard from "../components/Home/BookCard";
+import { faSearch } from "@fortawesome/fontawesome-free-solid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Media } from "../models/Media";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
-    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [data, setData] = useState([]);
 
     const searchHandler = () => {
         const fetchTitles = async () => {
-            setData((await GetBooks.searchByTitle(title)).data.items);
+            try {
+                setData((await GetBooks.searchByTitle(title)).data.items);
+                setData((prev) => {
+                    const filtered = prev.filter(
+                        (book) => book.volumeInfo.language === "en"
+                    );
+                    return filtered.map((book) => new Media(book));
+                });
+            } catch (err) {
+                console.log(err.response.data);
+            }
         };
 
         fetchTitles();
@@ -29,17 +41,13 @@ export default function Home() {
                 changeHandler={(e) => setTitle(e.target.value)}
                 name="title"
             />
-            <CustomButton text="Search" clickHandler={searchHandler} />
-            <ul>
-                {data.map((book) => (
-                    <li
-                        onClick={() => navigate(`/book/${book.id}`)}
-                        key={book.id}
-                    >
-                        {book.volumeInfo.title}
-                    </li>
-                ))}
-            </ul>
+            <button onClick={searchHandler}>
+                <FontAwesomeIcon icon={faSearch} />
+            </button>
+            <div className={styles.cardsContainer}>
+                {data &&
+                    data.map((book) => <BookCard book={book} key={book.id} />)}
+            </div>
         </>
     );
 }

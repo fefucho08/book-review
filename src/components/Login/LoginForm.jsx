@@ -1,4 +1,3 @@
-import CustomButton from "../CustomButton";
 import LoginInput from "./LoginInput";
 
 export default function LoginForm({ loginData, setLoginData }) {
@@ -29,7 +28,7 @@ export default function LoginForm({ loginData, setLoginData }) {
                 changeHandler={changeHandler}
                 name={"password"}
             />
-            <CustomButton clickHandler={() => {}} text="Login" />
+            <button>Login</button>
         </form>
     );
 }

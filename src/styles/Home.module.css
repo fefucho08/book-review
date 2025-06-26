@@ -1,0 +1,15 @@
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    cursor: pointer;
+}
+
+.bookCard {
+    background-color: rgb(197, 237, 244);
+    margin: 10px;
+    padding: 10px;
+}
+
+.bookCard:hover {
+    transform: scale(1.02);
+}

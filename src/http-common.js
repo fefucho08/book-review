@@ -5,4 +5,7 @@ export default axios.create({
     headers: {
         "Content-Type": "application/json",
     },
+    params: {
+        key: process.env.REACT_APP_GOOGLE_BOOKS_API_KEY,
+    },
 });
