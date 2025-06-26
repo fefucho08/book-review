@@ -9,8 +9,4 @@ export default class GetBooks {
             },
         });
     }
-
-    static searchById(id) {
-        return http.get(`/${id}`);
-    }
 }
