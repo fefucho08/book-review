@@ -4,17 +4,26 @@ import { Book, Magazine, VOLUME_TYPES } from "../../models/Media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
 import styles from "../../styles/Home.module.css";
+import SearchFilter from "./SearchFilter";
 
 export default function SearchBar({ setData }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [searchFilters, setSearchFilter] = useState({
+        filter: "title",
+        printType: VOLUME_TYPES.ALL,
+    });
 
     const fetchTitles = async () => {
         try {
             const response = await (
-                await GetBooks.searchByTitle(searchTerm)
+                await GetBooks.list(
+                    searchTerm,
+                    searchFilters.filter,
+                    searchFilters.printType
+                )
             ).data;
             if (response.totalItems > 0) {
-                setData((await GetBooks.searchByTitle(searchTerm)).data.items);
+                setData(response.items);
                 setData((prev) => {
                     const filtered = prev.filter(
                         (media) => media.volumeInfo.language === "en"
@@ -25,7 +34,7 @@ export default function SearchBar({ setData }) {
                         else return new Magazine(media);
                     });
                 });
-            }
+            } else setData([]);
         } catch (err) {
             console.log(err.response?.data || err.message);
         }
@@ -36,21 +45,27 @@ export default function SearchBar({ setData }) {
     };
 
     return (
-        <div className={styles.searchBarContainer}>
-            <input
-                className={styles.searchInput}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search..."
-                onKeyDown={handleKeyDown}
+        <>
+            <div className={styles.searchBarContainer}>
+                <input
+                    className={styles.searchInput}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search..."
+                    onKeyDown={handleKeyDown}
+                />
+                <button
+                    type="button"
+                    className={styles.searchButton}
+                    onClick={fetchTitles}
+                >
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
+            </div>
+            <SearchFilter
+                searchFilters={searchFilters}
+                setSearchFilters={setSearchFilter}
             />
-            <button
-                type="button"
-                className={styles.searchButton}
-                onClick={fetchTitles}
-            >
-                <FontAwesomeIcon icon={faSearch} />
-            </button>
-        </div>
+        </>
     );
 }

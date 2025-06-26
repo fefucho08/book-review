@@ -120,6 +120,34 @@
     font-family: "Segoe UI", "Arial", sans-serif;
 }
 
+/* Filtros de pesquisa */
+.searchFiltersContainer {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 24px 0;
+    flex-wrap: wrap;
+}
+
+.searchFiltersContainer select {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #d1d5db;
+    background: #f7f7f9;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: border 0.2s, background 0.2s;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.searchFiltersContainer select:focus {
+    border-color: #bdbdbd;
+    background: #fff;
+}
+
 @media screen and (max-width: 970px) {
     .cardsContainer {
         grid-template-columns: 1fr;
@@ -148,5 +176,14 @@
     .searchButton {
         width: 100%;
         border-radius: 0 0 24px 24px;
+    }
+    .searchFiltersContainer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .searchFiltersContainer select {
+        width: 100%;
+        min-width: unset;
     }
 }

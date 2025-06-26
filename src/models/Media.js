@@ -1,6 +1,7 @@
 export const VOLUME_TYPES = {
     BOOK: "BOOK",
     MAGAZINE: "MAGAZINE",
+    ALL: "ALL",
 };
 
 export class Media {
@@ -92,7 +93,7 @@ export class Magazine extends Media {
             previewLink,
             VOLUME_TYPES.MAGAZINE
         );
-        this.publishedDate = publishedDate;
+        this.pubDate = publishedDate;
         this.subtitle = subtitle;
     }
 }
