@@ -1,21 +1,10 @@
 import { useEffect, useState } from "react";
-import LoginInput from "../components/Login/LoginInput";
-import CustomButton from "../components/CustomButton";
-import GetBooks from "../services/getBooks";
-import { useNavigate } from "react-router-dom";
+import BookCard from "../components/Home/BookCard";
+import styles from "../styles/Home.module.css";
+import SearchBar from "../components/Home/SearchBar";
 
 export default function Home() {
-    const navigate = useNavigate();
-    const [title, setTitle] = useState("");
     const [data, setData] = useState([]);
-
-    const searchHandler = () => {
-        const fetchTitles = async () => {
-            setData((await GetBooks.searchByTitle(title)).data.items);
-        };
-
-        fetchTitles();
-    };
 
     useEffect(() => {
         console.log(data);
@@ -23,23 +12,12 @@ export default function Home() {
 
     return (
         <>
-            <h2>Home</h2>
-            <LoginInput
-                value={title}
-                changeHandler={(e) => setTitle(e.target.value)}
-                name="title"
-            />
-            <CustomButton text="Search" clickHandler={searchHandler} />
-            <ul>
-                {data.map((book) => (
-                    <li
-                        onClick={() => navigate(`/book/${book.id}`)}
-                        key={book.id}
-                    >
-                        {book.volumeInfo.title}
-                    </li>
-                ))}
-            </ul>
+            <h2 className={styles.pageTitle}>Home</h2>
+            <SearchBar setData={setData} />
+            <div className={styles.cardsContainer}>
+                {data &&
+                    data.map((book) => <BookCard book={book} key={book.id} />)}
+            </div>
         </>
     );
 }
