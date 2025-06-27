@@ -10,7 +10,7 @@ export default function SearchBar({ setData }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchFilters, setSearchFilter] = useState({
         filter: "title",
-        printType: VOLUME_TYPES.ALL,
+        printType: "all",
     });
 
     const fetchTitles = async () => {
