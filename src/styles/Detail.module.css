@@ -1,0 +1,87 @@
+/* ベースのリセット */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* コンテナ全体 */
+.detailContainer {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+}
+
+/* タイトル */
+.mainTitle {
+    background-color: rgb(32, 32, 93);
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* 読み込み中やエラー */
+.loading {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+.error {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+}
+
+/* メイン内容のレイアウト */
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* 画像 */
+.thumbnail {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 本の情報部分 */
+.info {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.description {
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+/* リンク */
+.previewLink {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #5757d5;
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.previewLink:hover {
+    background-color: #20209c;
+}
