@@ -1,34 +1,47 @@
-import LoginInput from "./LoginInput";
+import { useContext } from "react";
+import styles from "../../styles/Login.module.css";
+import UserContext from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ loginData, setLoginData }) {
+    const { setUser } = useContext(UserContext);
+    const nav = useNavigate();
+
     const changeHandler = (e) => {
-        setLoginData((prev) => {
-            return {
-                ...prev,
-                [e.target.name]: e.target.value,
-            };
-        });
+        setLoginData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
     };
 
     const loginHandler = (e) => {
         e.preventDefault();
-        console.log("Loggin in");
+        setUser(loginData);
+        nav("/");
     };
 
     return (
-        <form onSubmit={loginHandler}>
-            <LoginInput
+        <form className={styles.loginForm} onSubmit={loginHandler}>
+            <input
+                className={styles.loginInput}
+                name="username"
                 value={loginData.username}
-                changeHandler={changeHandler}
-                name={"username"}
+                onChange={changeHandler}
+                placeholder="Username"
+                autoComplete="username"
             />
-            <LoginInput
-                type="password"
+            <input
+                className={styles.loginInput}
+                name="password"
                 value={loginData.password}
-                changeHandler={changeHandler}
-                name={"password"}
+                onChange={changeHandler}
+                placeholder="Password"
+                type="password"
+                autoComplete="current-password"
             />
-            <button>Login</button>
+            <button className={styles.loginButton} type="submit">
+                Login
+            </button>
         </form>
     );
 }

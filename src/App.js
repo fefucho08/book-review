@@ -4,16 +4,41 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MyBooks from "./pages/MyBooks";
 import BookDetail from "./pages/BookDetail";
+import ProtectedPage from "./pages/ProtectedPage";
+import UserProvider from "./contexts/UserProvider";
 
 export default function App() {
     return (
-        <Routes>
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="login" element={<Login />} />
-                <Route path="myBooks" element={<MyBooks />} />
-                <Route path="book/:id" element={<BookDetail />} />
-            </Route>
-        </Routes>
+        <UserProvider>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route
+                        index
+                        element={
+                            <ProtectedPage>
+                                <Home />
+                            </ProtectedPage>
+                        }
+                    />
+                    <Route path="login" element={<Login />} />
+                    <Route
+                        path="myBooks"
+                        element={
+                            <ProtectedPage>
+                                <MyBooks />
+                            </ProtectedPage>
+                        }
+                    />
+                    <Route
+                        path="book/:id"
+                        element={
+                            <ProtectedPage>
+                                <BookDetail />
+                            </ProtectedPage>
+                        }
+                    />
+                </Route>
+            </Routes>
+        </UserProvider>
     );
 }
