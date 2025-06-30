@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import GetBooks from "../services/getBooks";
 import { Book, Magazine, VOLUME_TYPES } from "../models/Media";
 import styles from "../styles/Detail.module.css";
+import BookMark from "../components/Home/BookMark";
 
 export default function BookDetail() {
     const { id } = useParams();
@@ -90,6 +91,7 @@ export default function BookDetail() {
                             🔗 Open Preview
                         </a>
                     )}
+                    <BookMark id={id} />
                 </div>
             </div>
         </div>
