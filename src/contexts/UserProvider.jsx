@@ -4,6 +4,25 @@ import UserContext from "./UserContext";
 export default function UserProvider({ children }) {
     const [user, setUser] = useState(null);
 
+    const authUser = (loginData) => {
+        const registeredUsers = JSON.parse(localStorage.getItem("users"));
+        if (registeredUsers) {
+            const userInfo = registeredUsers.find(
+                (user) =>
+                    user.username === loginData.username &&
+                    user.password === loginData.password
+            );
+            if (userInfo) {
+                setUser(userInfo);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    };
+
     const updateUser = (id, info) => {
         let registeredUsers = JSON.parse(localStorage.getItem("users"));
         if (registeredUsers) {
@@ -34,7 +53,9 @@ export default function UserProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, updateUser, createUser }}>
+        <UserContext.Provider
+            value={{ user, setUser, authUser, updateUser, createUser }}
+        >
             {children}
         </UserContext.Provider>
     );

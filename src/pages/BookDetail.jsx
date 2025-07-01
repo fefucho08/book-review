@@ -47,7 +47,7 @@ export default function BookDetail() {
 
     return (
         <div className={styles.detailContainer}>
-            <h2 className={styles.mainTitle}>Book Detail</h2>
+            <h2 className={styles.mainTitle}>{bookData.title}</h2>
             <div className={styles.content}>
                 {bookData.images?.thumbnail && (
                     <img
@@ -57,9 +57,6 @@ export default function BookDetail() {
                     />
                 )}
                 <div className={styles.info}>
-                    <p>
-                        <strong>Title:</strong> {bookData.title}
-                    </p>
                     <p>
                         <strong>Author:</strong>{" "}
                         {bookData.authors?.join(", ") || "Unknown"}
@@ -91,7 +88,7 @@ export default function BookDetail() {
                             🔗 Open Preview
                         </a>
                     )}
-                    <BookMark id={id} />
+                    <BookMark book={bookData} />
                 </div>
             </div>
         </div>

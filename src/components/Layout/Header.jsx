@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "../../styles/Header.module.css";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function Header() {
+    const { user } = useContext(UserContext);
+
     return (
         <header>
             <nav className={styles.navbar}>
@@ -14,7 +18,9 @@ export default function Header() {
                         <Link to="/myBooks">My Books</Link>
                     </li>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <Link to={user ? "/logout" : "/login"}>
+                            {user ? "Logout" : "Login"}
+                        </Link>
                     </li>
                 </ul>
             </nav>

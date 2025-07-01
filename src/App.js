@@ -7,6 +7,7 @@ import BookDetail from "./pages/BookDetail";
 import ProtectedPage from "./pages/ProtectedPage";
 import UserProvider from "./contexts/UserProvider";
 import Register from "./pages/Register";
+import Logout from "./pages/Logout";
 
 export default function App() {
     return (
@@ -22,6 +23,7 @@ export default function App() {
                         }
                     />
                     <Route path="login" element={<Login />} />
+                    <Route path="logout" element={<Logout />} />
                     <Route path="register" element={<Register />} />
                     <Route
                         path="myBooks"

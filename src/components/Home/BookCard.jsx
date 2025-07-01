@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/Home.module.css";
 import BookMark from "./BookMark";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/fontawesome-free-solid";
 
 export default function BookCard({ book }) {
     const nav = useNavigate();
@@ -13,10 +15,7 @@ export default function BookCard({ book }) {
             : book.description || "No description";
 
     return (
-        <div
-            className={styles.bookCard}
-            onClick={() => nav(`/book/${book.id}`)}
-        >
+        <div className={styles.bookCard}>
             <img
                 src={
                     book.images.thumbnail
@@ -35,6 +34,16 @@ export default function BookCard({ book }) {
                         : "Unknown authors"}
                 </h3>
                 <p>{shortDescription}</p>
+                <div className={styles.bookActions}>
+                    <BookMark book={book} />
+                    <button
+                        type="button"
+                        onClick={() => nav(`/book/${book.id}`)}
+                        className={styles.seeMore}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                    </button>
+                </div>
             </div>
         </div>
     );

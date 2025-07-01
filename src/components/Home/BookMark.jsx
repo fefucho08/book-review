@@ -1,43 +1,45 @@
 import { faBookmark as solid } from "@fortawesome/fontawesome-free-solid";
 import { faBookmark as empty } from "@fortawesome/fontawesome-free-regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../../contexts/UserContext";
+import styles from "../../styles/Home.module.css";
 
-export default function BookMark({ id }) {
-    const [userInfo, setUserInfo] = useState({});
+export default function BookMark({ book }) {
+    const { user, updateUser, setUser } = useContext(UserContext);
     const [bookmarked, isBookmarked] = useState(false);
 
     useEffect(() => {
-        setUserInfo(JSON.parse(localStorage.getItem("userinfo")));
-    }, []);
-
-    useEffect(() => {
-        if (userInfo.bookmarks) {
-            isBookmarked(userInfo.bookmarks.includes(id));
+        if (user.bookmarks) {
+            isBookmarked(
+                Boolean(
+                    user.bookmarks.find((existing) => existing.id === book.id)
+                )
+            );
         }
-    }, [userInfo, id]);
-
-    const updateLocalStorage = (newInfo) => {
-        localStorage.setItem("userinfo", JSON.stringify(newInfo));
-    };
+    }, [user, book.id]);
 
     const bookMarkHandler = () => {
-        const bookmarks = userInfo.bookmarks;
+        let bookmarks = user.bookmarks;
         if (bookmarked) {
-            bookmarks.splice(bookmarks.indexOf(id), 1);
+            bookmarks = bookmarks.filter((existing) => existing.id !== book.id);
         } else {
-            bookmarks.push(id);
+            bookmarks.push(book);
         }
         const newInfo = {
-            ...userInfo,
+            ...user,
             bookmarks,
         };
-        updateLocalStorage(newInfo);
-        setUserInfo(newInfo);
+        updateUser(user.id, newInfo);
+        setUser(newInfo);
     };
 
     return (
-        <button type="button" onClick={bookMarkHandler}>
+        <button
+            type="button"
+            className={styles.bookmarkButton}
+            onClick={bookMarkHandler}
+        >
             <FontAwesomeIcon icon={bookmarked ? solid : empty} />
         </button>
     );

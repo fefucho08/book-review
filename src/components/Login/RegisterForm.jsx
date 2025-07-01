@@ -12,7 +12,7 @@ export default function RegisterForm({ registerData, setRegisterData }) {
     const registerHandler = (e) => {
         e.preventDefault();
         const userData = {
-            id: Date.now,
+            id: Date.now(),
             bookmarks: [],
             ...registerData,
         };

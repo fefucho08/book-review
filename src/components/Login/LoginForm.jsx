@@ -4,7 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function LoginForm({ loginData, setLoginData }) {
-    const { setUser } = useContext(UserContext);
+    const { authUser } = useContext(UserContext);
     const nav = useNavigate();
 
     const [message, setMessage] = useState("");
@@ -18,21 +18,10 @@ export default function LoginForm({ loginData, setLoginData }) {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        const registeredUsers = JSON.parse(localStorage.getItem("users"));
-        if (registeredUsers) {
-            const userInfo = registeredUsers.find(
-                (user) =>
-                    user.username === loginData.username &&
-                    user.password === loginData.password
-            );
-            if (userInfo) {
-                setUser(loginData);
-                nav("/");
-            } else {
-                setMessage("Authentication failed");
-            }
+        if (authUser(loginData)) {
+            nav("/");
         } else {
-            setMessage("Failed to get users");
+            setMessage("Authentication failed");
         }
     };
 

@@ -21,7 +21,6 @@
 }
 
 .bookCard:hover {
-    cursor: pointer;
     transform: scale(1.025) translateY(-2px);
     box-shadow: 0 8px 32px rgba(60, 60, 60, 0.13);
     border-color: #bdbdbd;
@@ -117,10 +116,8 @@
     margin-top: 24px;
     margin-bottom: 12px;
     letter-spacing: 1px;
-    font-family: "Segoe UI", "Arial", sans-serif;
 }
 
-/* Filtros de pesquisa */
 .searchFiltersContainer {
     display: flex;
     gap: 12px;
@@ -148,6 +145,60 @@
     background: #fff;
 }
 
+.bookmarkButton {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 50%;
+    transition: background 0.18s, box-shadow 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    color: #888;
+    font-size: 1.3rem;
+}
+
+.bookmarkButton:hover,
+.bookmarkButton:focus {
+    background: #f0f0f0;
+    color: #222;
+    box-shadow: 0 2px 8px rgba(60, 60, 60, 0.08);
+}
+
+.bookActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.seeMore {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    margin-left: 4px;
+    box-shadow: 0 2px 8px rgba(60, 60, 60, 0.04);
+}
+
+.seeMore:hover,
+.seeMore:focus {
+    background: #444;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(60, 60, 60, 0.1);
+}
+
 @media screen and (max-width: 970px) {
     .cardsContainer {
         grid-template-columns: 1fr;
@@ -169,14 +220,6 @@
         width: 100%;
         font-size: 0.98rem;
     }
-    .searchBarContainer {
-        flex-direction: column;
-        gap: 8px;
-    }
-    .searchButton {
-        width: 100%;
-        border-radius: 0 0 24px 24px;
-    }
     .searchFiltersContainer {
         flex-direction: column;
         gap: 8px;
@@ -185,5 +228,18 @@
     .searchFiltersContainer select {
         width: 100%;
         min-width: unset;
+    }
+    .bookmarkButton {
+        font-size: 1.1rem;
+        padding: 5px 7px;
+    }
+    .bookActions {
+        gap: 6px;
+        margin-top: 8px;
+    }
+    .seeMore {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
     }
 }
