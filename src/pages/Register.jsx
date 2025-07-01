@@ -6,6 +6,9 @@ export default function Register() {
     const [registerData, setRegisterData] = useState({
         username: "",
         password: "",
+        firstname: "",
+        lastname: "",
+        email: "",
     });
 
     return (

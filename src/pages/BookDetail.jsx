@@ -15,7 +15,8 @@ export default function BookDetail() {
             try {
                 const response = await GetBooks.getById(id);
                 const bookInfo = response.data;
-                bookInfo.printType === VOLUME_TYPES.BOOK
+                console.log(bookInfo);
+                bookInfo.volumeInfo.printType === VOLUME_TYPES.BOOK
                     ? setBookData(new Book(bookInfo))
                     : setBookData(new Magazine(bookInfo));
             } catch (error) {

@@ -44,6 +44,31 @@ export default function RegisterForm({ registerData, setRegisterData }) {
             />
             <input
                 className={styles.loginInput}
+                name="firstname"
+                value={registerData.firstname}
+                onChange={changeHandler}
+                placeholder="First name"
+                required
+            />
+            <input
+                className={styles.loginInput}
+                name="lastname"
+                value={registerData.lastname}
+                onChange={changeHandler}
+                placeholder="Last name"
+                required
+            />
+            <input
+                className={styles.loginInput}
+                name="email"
+                value={registerData.email}
+                onChange={changeHandler}
+                placeholder="Email"
+                type="email"
+                required
+            />
+            <input
+                className={styles.loginInput}
                 name="password"
                 value={registerData.password}
                 onChange={changeHandler}
