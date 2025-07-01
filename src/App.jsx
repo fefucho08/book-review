@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MyBooks from "./pages/MyBooks";
+import MyProfile from "./pages/MyProfile";
 import BookDetail from "./pages/BookDetail";
 import ProtectedPage from "./pages/ProtectedPage";
 import UserProvider from "./contexts/UserProvider";
@@ -31,6 +32,14 @@ export default function App() {
                             <ProtectedPage>
                                 <MyBooks />
                             </ProtectedPage>
+                        }
+                    />
+                    <Route
+                        path="myProfile"
+                        element={
+                            // <ProtectedPage>
+                            <MyProfile />
+                            // </ProtectedPage>
                         }
                     />
                     <Route

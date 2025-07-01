@@ -18,6 +18,9 @@ export default function Header() {
                         <Link to="/myBooks">My Books</Link>
                     </li>
                     <li>
+                        <Link to="/myProfile">Profile</Link>
+                    </li>
+                    <li>
                         <Link to={user ? "/logout" : "/login"}>
                             {user ? "Logout" : "Login"}
                         </Link>

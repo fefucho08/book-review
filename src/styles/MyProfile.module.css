@@ -1,0 +1,26 @@
+.profileContainer {
+    background-color: #f2f2f2;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.profileInfo p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #444;
+}
+
+.profileInfo strong {
+    color: #111;
+}
