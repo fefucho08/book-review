@@ -14,6 +14,7 @@ export default function UserProvider({ children }) {
             );
             if (userInfo) {
                 setUser(userInfo);
+                localStorage.setItem("userinfo", JSON.stringify(userInfo)); // save the login info
                 return true;
             } else {
                 return false;
@@ -29,6 +30,10 @@ export default function UserProvider({ children }) {
             registeredUsers = registeredUsers.filter((user) => user.id !== id);
             registeredUsers.push(info);
             localStorage.setItem("users", JSON.stringify(registeredUsers));
+
+            // update user of Context
+            setUser(info);
+            localStorage.setItem("userinfo", JSON.stringify(info));
         }
     };
 
