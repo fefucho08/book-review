@@ -37,9 +37,9 @@ export default function App() {
                     <Route
                         path="myProfile"
                         element={
-                            // <ProtectedPage>
-                            <MyProfile />
-                            // </ProtectedPage>
+                            <ProtectedPage>
+                                <MyProfile />
+                            </ProtectedPage>
                         }
                     />
                     <Route

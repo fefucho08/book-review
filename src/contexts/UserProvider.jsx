@@ -1,11 +1,13 @@
 import { useState } from "react";
 import UserContext from "./UserContext";
+import User from "../models/User";
 
 export default function UserProvider({ children }) {
     const [user, setUser] = useState(null);
 
     const authUser = (loginData) => {
         const registeredUsers = JSON.parse(localStorage.getItem("users"));
+        console.log(registeredUsers);
         if (registeredUsers) {
             const userInfo = registeredUsers.find(
                 (user) =>
@@ -13,8 +15,7 @@ export default function UserProvider({ children }) {
                     user.password === loginData.password
             );
             if (userInfo) {
-                setUser(userInfo);
-                localStorage.setItem("userinfo", JSON.stringify(userInfo)); // save the login info
+                setUser(new User(userInfo));
                 return true;
             } else {
                 return false;
@@ -30,10 +31,7 @@ export default function UserProvider({ children }) {
             registeredUsers = registeredUsers.filter((user) => user.id !== id);
             registeredUsers.push(info);
             localStorage.setItem("users", JSON.stringify(registeredUsers));
-
-            // update user of Context
             setUser(info);
-            localStorage.setItem("userinfo", JSON.stringify(info));
         }
     };
 

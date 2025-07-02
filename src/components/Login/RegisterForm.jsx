@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../../styles/Login.module.css";
 import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
+import User from "../../models/User";
 
 export default function RegisterForm({ registerData, setRegisterData }) {
     const { createUser, setUser } = useContext(UserContext);
@@ -16,8 +17,9 @@ export default function RegisterForm({ registerData, setRegisterData }) {
             bookmarks: [],
             ...registerData,
         };
-        if (createUser(userData)) {
-            setUser(userData);
+        const userObj = new User(userData);
+        if (createUser(userObj)) {
+            setUser(userObj);
             nav("/");
         } else {
             setMessage("Error to create user");
