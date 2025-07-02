@@ -5,6 +5,10 @@
     padding: 24px;
 }
 
+.cardsContainer > p {
+    text-align: center;
+}
+
 .bookCard {
     background: #fff;
     margin: 0;

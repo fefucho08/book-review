@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/fontawesome-free-solid";
 import styles from "../../styles/Home.module.css";
 import SearchFilter from "./SearchFilter";
 
-export default function SearchBar({ setData }) {
+export default function SearchBar({ setData, isLoading }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchFilters, setSearchFilter] = useState({
         filter: "title",
@@ -14,6 +14,7 @@ export default function SearchBar({ setData }) {
     });
 
     const fetchTitles = async () => {
+        isLoading(true);
         try {
             const response = await (
                 await GetBooks.list(
@@ -38,6 +39,7 @@ export default function SearchBar({ setData }) {
         } catch (err) {
             console.log(err.response?.data || err.message);
         }
+        isLoading(false);
     };
 
     const handleKeyDown = (e) => {
