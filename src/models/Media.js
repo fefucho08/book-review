@@ -21,7 +21,7 @@ export class Media {
         this.authors = authors;
         this.publisher = publisher;
         this.pageCount = parseInt(pageCount);
-        this.description = description;
+        this.description = description.replace(/<\/?[^>]+(>|$)/g, "");
         this.images = imageLinks;
         this.link = previewLink;
         this.type = printType;
