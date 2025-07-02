@@ -11,15 +11,19 @@ export default function Header() {
             <nav className={styles.navbar}>
                 <h1>📚 Book App</h1>
                 <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/myBooks">My Books</Link>
-                    </li>
-                    <li>
-                        <Link to="/myProfile">Profile</Link>
-                    </li>
+                    {user && (
+                        <>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/myBooks">My Books</Link>
+                            </li>
+                            <li>
+                                <Link to="/myProfile">Profile</Link>
+                            </li>
+                        </>
+                    )}
                     <li>
                         <Link to={user ? "/logout" : "/login"}>
                             {user ? "Logout" : "Login"}
