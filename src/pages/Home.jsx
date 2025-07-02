@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import SearchBar from "../components/Home/SearchBar";
 
 export default function Home() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [loading, isLoading] = useState(false);
 
     return (
@@ -16,6 +16,7 @@ export default function Home() {
                 {data &&
                     !loading &&
                     data.map((book) => <BookCard book={book} key={book.id} />)}
+                {data?.length === 0 && !loading && <p>No results found</p>}
             </div>
         </>
     );

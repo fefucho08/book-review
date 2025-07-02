@@ -7,7 +7,6 @@ export default function UserProvider({ children }) {
 
     const authUser = (loginData) => {
         const registeredUsers = JSON.parse(localStorage.getItem("users"));
-        console.log(registeredUsers);
         if (registeredUsers) {
             const userInfo = registeredUsers.find(
                 (user) =>

@@ -14,32 +14,36 @@ export default function SearchBar({ setData, isLoading }) {
     });
 
     const fetchTitles = async () => {
-        isLoading(true);
-        try {
-            const response = await (
-                await GetBooks.list(
-                    searchTerm,
-                    searchFilters.filter,
-                    searchFilters.printType
-                )
-            ).data;
-            if (response.totalItems > 0) {
-                setData(response.items);
-                setData((prev) => {
-                    const filtered = prev.filter(
-                        (media) => media.volumeInfo.language === "en"
-                    );
-                    return filtered.map((media) => {
-                        if (media.volumeInfo.printType === VOLUME_TYPES.BOOK)
-                            return new Book(media);
-                        else return new Magazine(media);
+        if (searchTerm) {
+            isLoading(true);
+            try {
+                const response = await (
+                    await GetBooks.list(
+                        searchTerm,
+                        searchFilters.filter,
+                        searchFilters.printType
+                    )
+                ).data;
+                if (response.totalItems > 0) {
+                    setData(response.items);
+                    setData((prev) => {
+                        const filtered = prev.filter(
+                            (media) => media.volumeInfo.language === "en"
+                        );
+                        return filtered.map((media) => {
+                            if (
+                                media.volumeInfo.printType === VOLUME_TYPES.BOOK
+                            )
+                                return new Book(media);
+                            else return new Magazine(media);
+                        });
                     });
-                });
-            } else setData([]);
-        } catch (err) {
-            console.log(err.response?.data || err.message);
+                } else setData([]);
+            } catch (err) {
+                console.log(err.response?.data || err.message);
+            }
+            isLoading(false);
         }
-        isLoading(false);
     };
 
     const handleKeyDown = (e) => {
