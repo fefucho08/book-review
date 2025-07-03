@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# 📚 Book Review App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive book review application built with **React** and **Vite**.  
+Search for books and magazines using the Google Books API, bookmark your favorites, and manage your profile—all with a beautiful UI.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+-   🔍 **Search** for books and magazines by title, author, or publisher
+-   ⭐ **Bookmark** your favorite books
+-   👤 **User authentication** (register, login, logout)
+-   📝 **Profile editing**
+-   📖 **Book details** with cover, description, and more
+-   💡 **Responsive design** for all devices
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Getting Started
 
-### `npm test`
+### 1. Clone the repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/your-username/book-review.git
+cd book-review
+```
 
-### `npm run build`
+### 2. Install dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Configure the Google Books API Key
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   Create a `.env` file in the root of the project:
+    ```
+    VITE_GOOGLE_BOOKS_API_KEY=your_google_books_api_key_here
+    ```
+-   [Get your API key here](https://console.cloud.google.com/apis/credentials).
 
-### `npm run eject`
+### 4. Start the development server
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm run dev
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open [http://localhost:5173](http://localhost:5173) to view the app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🧩 Project Structure
 
-## Learn More
+```
+src/
+  components/      # Reusable UI components
+  contexts/        # React Context for user/auth
+  models/          # Data models (Book, User, etc.)
+  pages/           # Main pages (Home, Login, MyBooks, etc.)
+  services/        # API calls and helpers
+  styles/          # CSS modules
+  App.jsx          # Main app component
+  Layout.jsx       # App layout (header, footer, etc.)
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📦 Built With
 
-### Code Splitting
+-   [React](https://react.dev/)
+-   [Vite](https://vitejs.dev/)
+-   [Google Books API](https://developers.google.com/books/docs/v1/using)
+-   [Font Awesome](https://fontawesome.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project is for educational purposes.  
+Feel free to use and adapt!
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🙌 Credits
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Developed by Felipe Ferreira Moreira and Kaho Uchiyama.  
+Inspired by modern book and library apps.
